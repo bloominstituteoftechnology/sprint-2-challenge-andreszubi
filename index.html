@@ -6,31 +6,136 @@
   <script id="challenge">
     // 👉 CHALLENGE 1
     function profileActivation(profile, reason) {
+      
+    if (profile.active === true && reason === undefined) {
+      return  'confirm status manually';
+     }   
+
+    else if (profile.active === true) {
+      return { active: false, reason: reason };
+    }
+
+    else {
+      return { active: true };
 
     }
 
+  }
+
+
     // 👉 CHALLENGE 2
     function mineSweeper(grid, x, y) {
+      
+      if ( x > 3 || y > 3 || x < 1 || y < 1) {
+        return 'invalid coordinates';
+      }
+
+      if (grid[y - 1][x - 1] === '🟥') {
+        return '🟥 💀';
+      }
+
+      if (grid[y - 1][x - 1] === '🟦') {
+        return '🟦 🥳';
+      }
 
     }
 
     // 👉 CHALLENGE 3
     function booleanize(obj) {
+        
+        let newObj = {};
+
+        
+  
+        for (let key in obj) {
+
+          if (key.length > 9) {
+            return 'shorten all prop names to 9 chars or less';
+          }
+
+          if (obj[key] === 1) {
+            newObj[key] = true;
+          } else if (obj[key] === 0) {
+            newObj[key] = false;
+          } else if (obj[key] !== null) {
+            newObj[key] = obj[key];
+          }
+        }
+
+       
+  
+        return newObj;
 
     }
 
     // 👉 CHALLENGE 4
     function scrub(text, forbidden) {
 
+      let newText = text;
+
+      for (let word of forbidden) {
+
+        if (word === '') {
+          continue;
+         return newText;
+      }
+
+        let scrubbedWord = '';
+
+        for (let i = 0; i < word.length; i++) {
+          scrubbedWord += 'x';
+        }
+
+        newText = newText.split(word).join(scrubbedWord);
+
+      }
+
+      return newText;
+
     }
 
     // 👉 CHALLENGE 5 (bonus, NOT graded)
     function normalizePhoneNumber(num) {
 
+      let normalizedNum = '(';
+
+      for (let i = 0; i < num.length; i++) {
+
+        if (i === 3) {
+          normalizedNum += ') ';
+        } else if (i === 6) {
+          normalizedNum += '-';
+        }
+
+        normalizedNum += num[i];
+
+      }
+
+      return normalizedNum;
+
     }
 
     // 👉 CHALLENGE 6 (bonus, NOT graded)
     function diceRolls() {
+
+      let rolls = 0;
+      let consecutiveSixes = 0;
+
+      while (consecutiveSixes <= 3) {
+
+        let roll = Math.floor(Math.random() * 6) + 1;
+
+        if (roll === 6) {
+          consecutiveSixes++;
+        } else {
+          consecutiveSixes = 0;
+        }
+
+        rolls++;
+
+      }
+
+      return rolls;
 
     }
 
